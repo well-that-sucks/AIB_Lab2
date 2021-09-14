@@ -2,6 +2,8 @@ from collections import deque as queue
 
 class Algoritms:
 
+    min_step = 99999
+
     def return_min(self, res1, res2):
         if (res1[0] <= res2[0]):
             return res1
@@ -30,16 +32,27 @@ class Algoritms:
         path_matrix[pos[1]][pos[0]] = step
         if pos == target:
             return (step, path_matrix)
-        if maze[pos[1]][pos[0]] != '#' and pos != target:
+        if maze[pos[1]][pos[0]] != '#':
             visited[pos[1]][pos[0]] = True
             res = self.find_path_dfs(maze, (pos[0] + 1, pos[1]), target, step + 1, [x[:] for x in path_matrix], visited)
-            res = self.return_min(res, self.find_path_dfs(maze, (pos[0] - 1, pos[1]), target, step + 1, [x[:] for x in path_matrix], visited))
-            res = self.return_min(res, self.find_path_dfs(maze, (pos[0], pos[1] + 1), target, step + 1, [x[:] for x in path_matrix], visited))
-            res = self.return_min(res, self.find_path_dfs(maze, (pos[0], pos[1] - 1), target, step + 1, [x[:] for x in path_matrix], visited))
-            visited[pos[1]][pos[0]] = False
+            if res[0] != 999999:
+                return res
+            res = self.find_path_dfs(maze, (pos[0] - 1, pos[1]), target, step + 1, [x[:] for x in path_matrix], visited)
+            if res[0] != 999999:
+                return res
+            res = self.find_path_dfs(maze, (pos[0], pos[1] + 1), target, step + 1, [x[:] for x in path_matrix], visited)
+            if res[0] != 999999:
+                return res
+            res = self.find_path_dfs(maze, (pos[0], pos[1] - 1), target, step + 1, [x[:] for x in path_matrix], visited)
+            if res[0] != 999999:
+                return res
+            #res = self.find_path_dfs(maze, (pos[0] + 1, pos[1]), target, step + 1, [x[:] for x in path_matrix], visited)
+            #res = self.return_min(res, self.find_path_dfs(maze, (pos[0] - 1, pos[1]), target, step + 1, [x[:] for x in path_matrix], visited))
+            #res = self.return_min(res, self.find_path_dfs(maze, (pos[0], pos[1] + 1), target, step + 1, [x[:] for x in path_matrix], visited))
+            #res = self.return_min(res, self.find_path_dfs(maze, (pos[0], pos[1] - 1), target, step + 1, [x[:] for x in path_matrix], visited))
+            #visited[pos[1]][pos[0]] = False
             return res
         return (999999, path_matrix)
-
 
     def find_path_bfs(self, maze, pos, target, step, path_matrix, visited):
         d_row = [-1, 0, 1, 0]

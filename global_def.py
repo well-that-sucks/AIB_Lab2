@@ -5,6 +5,8 @@ from spritesheetutil import SpriteSheetUtil
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
 SPRITE_SIZE = 48
+TOTAL_SPRITES_H = SCREEN_WIDTH // SPRITE_SIZE
+TOTAL_SPRITES_V = SCREEN_HEIGHT // SPRITE_SIZE
 SPRITE_CHANGE_INTERVAL = 5
 BLINKING_BASE_INTERVAL = 20
 BOT_CHANGE_DIRECTION_INTERVAL = 60
@@ -19,7 +21,7 @@ MIN_COLLISION_DISTANCE = 25
 FPS = 60
 TRAVERSAL_FUNCTIONS_AMOUNT = 3
 
-levels = ['level1', 'level2', 'level3']
+levels = ['random_level', 'level1', 'level2', 'level3']
 level_idx = 0
 
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]

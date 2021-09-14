@@ -12,6 +12,7 @@ pygame.display.set_caption('Pacman')
 pygame.display.set_icon(icon)
 
 maze = Maze(levels[0])
+maze.generate_new_level('random_level')
 algorithms = Algoritms()
 func_helper = [('DFS', algorithms.get_dfs_function()), ('BFS', algorithms.get_bfs_function()), ('UCS', algorithms.get_ucs_function())]
 func_index = 0
@@ -34,7 +35,6 @@ while running:
         blinking_interval = BLINKING_BASE_INTERVAL
         anim_interval = ANIM_FRAME_DURATION
         anim_ind = 0
-        #time_total = 0
         rand_helper = [-1, 1]
         is_killer_mode_active = False
         has_blinked = False
